@@ -1,4 +1,5 @@
 {
+    "name": "Динамическая таблица",
     "columns": ["name", "surname", "age"],
     "rows": [
         ["Katya", "Petrova", "21"],

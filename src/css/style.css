@@ -1,0 +1,12 @@
+#dynamic-table td, th{
+    border: 1px solid black;
+    width: fit-content;
+}
+
+#dynamic-table th:hover {
+    cursor: pointer;
+}
+
+.found-by-search {
+    background-color: yellow;
+}
