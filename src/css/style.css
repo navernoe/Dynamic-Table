@@ -1,12 +1,39 @@
+* {
+    font-size: 20pt;
+}
+
+#dynamic-table {
+    margin: 0 auto;
+}
+
+#dynamic-table caption{
+    color: mediumseagreen;
+    font: bold 25pt Arial;
+    padding: 100px;
+}
+
 #dynamic-table td, th{
     border: 1px solid black;
     width: fit-content;
+    padding: 10px;
 }
 
 #dynamic-table th:hover {
     cursor: pointer;
 }
 
+.search {
+    margin: 70px auto;
+    text-align: center;
+}
+
 .found-by-search {
     background-color: yellow;
+}
+
+.tip {
+    color: grey;
+    text-align: center;
+    font-size: 12pt;
+    padding: 50px;
 }

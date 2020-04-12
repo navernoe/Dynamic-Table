@@ -7,13 +7,19 @@ export default class DynamicTable {
         this.rows = data.rows;
         this.captionText = data.name;
         this.sortDirection = {};
+        this.init();
+    }
+
+    init() {
         this.generateColumnsHead();
         this.generateRows(this.rows);
         this.createTable(this.rowsElems);
     }
 
+
     search(searchValue) {
         this.cells.forEach(cell => {
+
             if ( cell.textContent == searchValue ) {
                 cell.classList.add("found-by-search");
             } else {
@@ -37,6 +43,7 @@ export default class DynamicTable {
         this.createTable(sortedRows);
     };
 
+
     changeSortDirection(columnIndex) {
         const sort = this.sortDirection[columnIndex];
 
@@ -56,6 +63,7 @@ export default class DynamicTable {
 
     generateColumnsHead() {
         const columnsHead = document.createElement("tr");
+
         this.columns.forEach(column => {
             const columnHead = document.createElement("th");
             columnHead.append(column);
@@ -70,14 +78,17 @@ export default class DynamicTable {
     generateRows(rows) {
         this.cells = [];
         this.rowsElems = [];
+
         rows.forEach(row => {
             const rowEl = document.createElement("tr");
+
             row.forEach(cell => {
                 const cellEl = document.createElement("td");
                 cellEl.append(cell);
-                this.cells.push(cellEl);
                 rowEl.append(cellEl);
+                this.cells.push(cellEl);
             });
+
             this.rowsElems.push(rowEl);
         });
     }
