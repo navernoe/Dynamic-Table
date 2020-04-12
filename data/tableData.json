@@ -1,0 +1,10 @@
+{
+    "columns": ["name", "surname", "age"],
+    "rows": [
+        ["Katya", "Petrova", "21"],
+        ["Masha", "Ivanova", "25"],
+        ["Pavel", "Ostapov", "20"],
+        ["Petr", "Rozhkov", "77"],
+        ["Anton", "Scherbakov", "22"]
+    ]
+}
