@@ -5,11 +5,11 @@ export default class DynamicTable {
         this.table = document.getElementById("dynamic-table");
         this.columns = data.columns;
         this.rows = data.rows;
-        this.cells = [];
         this.captionText = data.name;
         this.sortDirection = {};
-        this.columnsHead = this.generateColumnsHead();
-        this.createTable(this.rows);
+        this.generateColumnsHead();
+        this.generateRows(this.rows);
+        this.createTable(this.rowsElems);
     }
 
     search(searchValue) {
@@ -26,7 +26,8 @@ export default class DynamicTable {
     setSortByColumn({ target }) {
         const indexSort = target.cellIndex;
         const sort = this.sortDirection[indexSort];
-        let sortedRows = sortBy(this.rows, row => row[indexSort]);
+        const rows = Array.from(this.rowsElems);
+        let sortedRows = sortBy(rows, row => row.cells[indexSort].textContent);
 
         if ( sort == "desc" ) {
             sortedRows = sortedRows.reverse();
@@ -62,27 +63,31 @@ export default class DynamicTable {
             columnsHead.append(columnHead);
         });
 
-        return columnsHead;
+        this.columnsHead = columnsHead;
     };
 
 
     generateRows(rows) {
         this.cells = [];
+        this.rowsElems = [];
         rows.forEach(row => {
-            const rowEl = this.table.insertRow();
+            const rowEl = document.createElement("tr");
             row.forEach(cell => {
-                const cellEl = rowEl.insertCell();
+                const cellEl = document.createElement("td");
                 cellEl.append(cell);
                 this.cells.push(cellEl);
+                rowEl.append(cellEl);
             });
+            this.rowsElems.push(rowEl);
         });
-    };
+    }
 
-    createTable(rows) {
+
+    createTable(rowsElements) {
         this.table.innerHTML = "";
         this.setTableCaption();
         this.table.append(this.columnsHead);
-        this.generateRows(rows);
+        this.table.append(...rowsElements);
     };
 
 }
